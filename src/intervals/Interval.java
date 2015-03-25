@@ -66,6 +66,10 @@ public class Interval {
 		return null;
 	}
 
+	public Opening getOpening() {
+		return opening;
+	}
+
 	@Override
 	public String toString() {
 		//TODO
