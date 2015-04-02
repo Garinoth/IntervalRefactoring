@@ -1,6 +1,6 @@
 package intervals;
 
-public class Interval {
+public abstract class Interval {
 	
 	private double minimum;
 	private double maximum;
@@ -17,6 +17,8 @@ public class Interval {
 		this.maximum = maximum;
 	}
 
+	public abstract Opening getOpening();
+	
 	public double midPoint() {
 		return (minimum + maximum)/2;
 	}
@@ -69,10 +71,6 @@ public class Interval {
 	public Interval intersection(Interval interval) {
 		//TODO
 		return null;
-	}
-
-	public Opening getOpening() {
-		return opening;
 	}
 
 	@Override
