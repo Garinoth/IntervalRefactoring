@@ -7,6 +7,8 @@ public class IntervalFactory {
 		switch (opening) {
 		case UNOPENED:
 			return new UnopenedInterval(minimum, maximum);
+		case BOTH_OPENED:
+			return new BothOpenedInterval(minimum, maximum);
 			
 		default:
 			return new Interval(minimum, maximum, opening);
