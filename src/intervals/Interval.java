@@ -28,9 +28,9 @@ public abstract class Interval {
 		if (minimum < value && value < maximum) {
 			result = true;
 		} else if (minimum == value) {
-			result = (opening == Opening.RIGHT_OPENED) || (opening == Opening.UNOPENED);
+			result = (this.getOpening() == Opening.RIGHT_OPENED) || (this.getOpening() == Opening.UNOPENED);
 		} else if (maximum == value) {
-			result = (opening == Opening.LEFT_OPENED) || (opening == Opening.UNOPENED);
+			result = (this.getOpening() == Opening.LEFT_OPENED) || (this.getOpening() == Opening.UNOPENED);
 		}
 		return result;
 	}
@@ -40,23 +40,23 @@ public abstract class Interval {
 		if (includes(interval.minimum) && includes (interval.maximum)) {
 			result = true;
 		} else if ((this.minimum == interval.minimum) && interval.maximum < this.maximum) { 
-			if (this.opening == Opening.BOTH_OPENED || this.opening == Opening.LEFT_OPENED) {
-				if (interval.opening == Opening.BOTH_OPENED || interval.opening == Opening.LEFT_OPENED) {
+			if (this.getOpening() == Opening.BOTH_OPENED || this.getOpening() == Opening.LEFT_OPENED) {
+				if (interval.getOpening() == Opening.BOTH_OPENED || interval.getOpening() == Opening.LEFT_OPENED) {
 					result = true;
 				}
-			} else if (this.opening == Opening.RIGHT_OPENED || this.opening == Opening.UNOPENED) {
+			} else if (this.getOpening() == Opening.RIGHT_OPENED || this.getOpening() == Opening.UNOPENED) {
 				result = true;
 			}
 		} else if ((this.maximum == interval.maximum) && interval.minimum > this.minimum) { 
-			if (this.opening == Opening.BOTH_OPENED || this.opening == Opening.RIGHT_OPENED) {
-				if (interval.opening == Opening.BOTH_OPENED || interval.opening == Opening.RIGHT_OPENED) {
+			if (this.getOpening() == Opening.BOTH_OPENED || this.getOpening() == Opening.RIGHT_OPENED) {
+				if (interval.getOpening() == Opening.BOTH_OPENED || interval.getOpening() == Opening.RIGHT_OPENED) {
 					result = true;
 				}
-			} else if (this.opening == Opening.LEFT_OPENED || this.opening == Opening.UNOPENED) {
+			} else if (this.getOpening() == Opening.LEFT_OPENED || this.getOpening() == Opening.UNOPENED) {
 				result = true;
 			}
 		} else if ((this.minimum == interval.minimum) && interval.maximum == this.maximum) { 
-			if (this.opening.equals(interval.opening)) {
+			if (this.getOpening().equals(interval.getOpening())) {
 				result = true;
 			}
 		}
