@@ -15,7 +15,7 @@ public class IntervalFactory {
 			return new RightOpenedInterval(minimum, maximum);
 			
 		default:
-			return new Interval(minimum, maximum, opening);
+			throw new IllegalArgumentException("Invalid type code value");
 		}
 	}
 }
