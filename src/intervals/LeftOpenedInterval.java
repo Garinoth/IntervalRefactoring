@@ -10,4 +10,9 @@ public class LeftOpenedInterval extends Interval {
 	public Opening getOpening() {
 		return Opening.LEFT_OPENED;
 	}
+	
+	@Override
+	public boolean includes(double value) {
+		return getMinimum() < value && value <= getMaximum();
+	}
 }
