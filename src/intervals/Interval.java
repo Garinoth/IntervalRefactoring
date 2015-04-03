@@ -26,7 +26,9 @@ public abstract class Interval {
 
 	public boolean includes(double value) {
 		boolean result = false;
-		if (getMinimum() == value) {
+		if (getMinimum() < value && value < getMaximum()) {
+			result = true;
+		} else if (getMinimum() == value) {
 			result = (this.getOpening() == Opening.RIGHT_OPENED) || (this.getOpening() == Opening.UNOPENED);
 		} else if (getMaximum() == value) {
 			result = (this.getOpening() == Opening.LEFT_OPENED) || (this.getOpening() == Opening.UNOPENED);
