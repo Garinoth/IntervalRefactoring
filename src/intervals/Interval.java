@@ -140,11 +140,6 @@ public abstract class Interval {
 				|| this.includes(interval.maximum);
 	}
 
-	public Interval intersection(Interval interval) {
-		//TODO
-		return null;
-	}
-
 	@Override
 	public String toString() {
 		//TODO
