@@ -10,5 +10,9 @@ public class UnopenedInterval extends Interval {
 	public Opening getOpening() {
 		return Opening.UNOPENED;
 	}
-
+	
+	@Override
+	public boolean includes(double value) {
+		return getMinimum() <= value && value <= getMaximum();
+	}
 }
