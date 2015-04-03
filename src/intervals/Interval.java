@@ -10,19 +10,27 @@ public abstract class Interval {
 		this.maximum = maximum;
 	}
 
+	public double getMinimum() {
+		return minimum;
+	}
+
+	public double getMaximum() {
+		return maximum;
+	}
+
 	public abstract Opening getOpening();
 	
 	public double midPoint() {
-		return (minimum + maximum)/2;
+		return (getMinimum() + getMaximum())/2;
 	}
 
 	public boolean includes(double value) {
 		boolean result = false;
-		if (minimum < value && value < maximum) {
+		if (getMinimum() < value && value < getMaximum()) {
 			result = true;
-		} else if (minimum == value) {
+		} else if (getMinimum() == value) {
 			result = (this.getOpening() == Opening.RIGHT_OPENED) || (this.getOpening() == Opening.UNOPENED);
-		} else if (maximum == value) {
+		} else if (getMaximum() == value) {
 			result = (this.getOpening() == Opening.LEFT_OPENED) || (this.getOpening() == Opening.UNOPENED);
 		}
 		return result;
@@ -30,9 +38,9 @@ public abstract class Interval {
 	
 	public boolean includes(Interval interval) {
 		boolean result = false;
-		if (includes(interval.minimum) && includes (interval.maximum)) {
+		if (includes(interval.getMinimum()) && includes (interval.getMaximum())) {
 			result = true;
-		} else if ((this.minimum == interval.minimum) && interval.maximum < this.maximum) { 
+		} else if ((this.getMinimum() == interval.getMinimum()) && interval.getMaximum() < this.getMaximum()) { 
 			if (this.getOpening() == Opening.BOTH_OPENED || this.getOpening() == Opening.LEFT_OPENED) {
 				if (interval.getOpening() == Opening.BOTH_OPENED || interval.getOpening() == Opening.LEFT_OPENED) {
 					result = true;
@@ -40,7 +48,7 @@ public abstract class Interval {
 			} else if (this.getOpening() == Opening.RIGHT_OPENED || this.getOpening() == Opening.UNOPENED) {
 				result = true;
 			}
-		} else if ((this.maximum == interval.maximum) && interval.minimum > this.minimum) { 
+		} else if ((this.getMaximum() == interval.getMaximum()) && interval.getMinimum() > this.getMinimum()) { 
 			if (this.getOpening() == Opening.BOTH_OPENED || this.getOpening() == Opening.RIGHT_OPENED) {
 				if (interval.getOpening() == Opening.BOTH_OPENED || interval.getOpening() == Opening.RIGHT_OPENED) {
 					result = true;
@@ -48,7 +56,7 @@ public abstract class Interval {
 			} else if (this.getOpening() == Opening.LEFT_OPENED || this.getOpening() == Opening.UNOPENED) {
 				result = true;
 			}
-		} else if ((this.minimum == interval.minimum) && interval.maximum == this.maximum) { 
+		} else if ((this.getMinimum() == interval.getMinimum()) && interval.getMaximum() == this.getMaximum()) { 
 			if (this.getOpening().equals(interval.getOpening())) {
 				result = true;
 			}
