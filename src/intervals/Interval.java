@@ -27,36 +27,117 @@ public abstract class Interval {
 	public abstract boolean includes(double value);
 	
 	public boolean includes(Interval interval) {
-		boolean result = false;
-		if (includes(interval.getMinimum()) && includes (interval.getMaximum())) {
-			result = true;
-		} else if ((this.getMinimum() == interval.getMinimum()) && interval.getMaximum() < this.getMaximum()) { 
-			if (this.getOpening() == Opening.BOTH_OPENED || this.getOpening() == Opening.LEFT_OPENED) {
-				if (interval.getOpening() == Opening.BOTH_OPENED || interval.getOpening() == Opening.LEFT_OPENED) {
-					result = true;
-				}
-			} else if (this.getOpening() == Opening.RIGHT_OPENED || this.getOpening() == Opening.UNOPENED) {
-				result = true;
+		boolean minimumIncluded = this.includes(interval.minimum);
+		boolean maximumIncluded = this.includes(interval.maximum);
+		switch (getOpening()) {
+		case BOTH_OPENED:
+			switch (interval.getOpening()) {
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case LEFT_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded);
+			case RIGHT_OPENED:
+				return (minimumIncluded)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case UNOPENED:
+				return (minimumIncluded) && (maximumIncluded);
+			default:
+				assert false;
+				return false;
 			}
-		} else if ((this.getMaximum() == interval.getMaximum()) && interval.getMinimum() > this.getMinimum()) { 
-			if (this.getOpening() == Opening.BOTH_OPENED || this.getOpening() == Opening.RIGHT_OPENED) {
-				if (interval.getOpening() == Opening.BOTH_OPENED || interval.getOpening() == Opening.RIGHT_OPENED) {
-					result = true;
-				}
-			} else if (this.getOpening() == Opening.LEFT_OPENED || this.getOpening() == Opening.UNOPENED) {
-				result = true;
+		case LEFT_OPENED:
+			switch (interval.getOpening()) {
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case LEFT_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case RIGHT_OPENED:
+				return (minimumIncluded)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case UNOPENED:
+				return (minimumIncluded)
+						&& (maximumIncluded || maximum == interval.maximum);
+			default:
+				assert false;
+				return false;
 			}
-		} else if ((this.getMinimum() == interval.getMinimum()) && interval.getMaximum() == this.getMaximum()) { 
-			if (this.getOpening().equals(interval.getOpening())) {
-				result = true;
+		case RIGHT_OPENED:
+			switch (interval.getOpening()) {
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case LEFT_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded);
+			case RIGHT_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case UNOPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded);
+			default:
+				assert false;
+				return false;
+			}
+		case UNOPENED:
+			switch (interval.getOpening()) {
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case LEFT_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case RIGHT_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			case UNOPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
+			default:
+				assert false;
+				return false;
+			}
+		default:
+			assert false;
+			return false;
+		}
+	}
+
+	public boolean intersectsWith(Interval interval) {
+		if (minimum == interval.maximum) {
+			switch (getOpening()) {
+			case BOTH_OPENED:
+			case LEFT_OPENED:
+				return false;
+			case RIGHT_OPENED:
+			case UNOPENED:
+				return interval.getOpening() == Opening.LEFT_OPENED ||
+						interval.getOpening() == Opening.UNOPENED;
+			default:
+				assert false;
+				return false;
 			}
 		}
-		return result;
-	}
-	
-	public boolean intersectsWith(Interval interval) {
-		//TODO
-		return false;
+		if (maximum == interval.minimum) {
+			switch (getOpening()) {
+			case BOTH_OPENED:
+			case RIGHT_OPENED:
+				return false;
+			case LEFT_OPENED:
+			case UNOPENED:
+				return interval.getOpening() == Opening.RIGHT_OPENED ||
+						interval.getOpening() == Opening.UNOPENED;
+			default:
+				assert false;
+				return false;
+			}
+		}
+		return this.includes(interval.minimum)
+				|| this.includes(interval.maximum);
 	}
 
 	public Interval intersection(Interval interval) {
