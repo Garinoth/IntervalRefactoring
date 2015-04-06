@@ -30,24 +30,6 @@ public abstract class Interval {
 		boolean minimumIncluded = this.includes(interval.getMinimum());
 		boolean maximumIncluded = this.includes(interval.getMaximum());
 		switch (getOpening()) {
-		case LEFT_OPENED:
-			switch (interval.getOpening()) {
-			case BOTH_OPENED:
-				return (minimumIncluded || getMinimum() == interval.getMinimum())
-						&& (maximumIncluded || getMaximum() == interval.getMaximum());
-			case LEFT_OPENED:
-				return (minimumIncluded || getMinimum() == interval.getMinimum())
-						&& (maximumIncluded || getMaximum() == interval.getMaximum());
-			case RIGHT_OPENED:
-				return (minimumIncluded)
-						&& (maximumIncluded || getMaximum() == interval.getMaximum());
-			case UNOPENED:
-				return (minimumIncluded)
-						&& (maximumIncluded || getMaximum() == interval.getMaximum());
-			default:
-				assert false;
-				return false;
-			}
 		case RIGHT_OPENED:
 			switch (interval.getOpening()) {
 			case BOTH_OPENED:
