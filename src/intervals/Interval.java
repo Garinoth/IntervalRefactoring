@@ -28,24 +28,7 @@ public abstract class Interval {
 	
 	public abstract boolean includes(Interval interval);
 
-	public boolean intersectsWith(Interval interval) {
-		if (getMinimum() == interval.getMaximum()) {
-			switch (getOpening()) {
-			default:
-				assert false;
-				return false;
-			}
-		}
-		if (getMaximum() == interval.getMinimum()) {
-			switch (getOpening()) {
-			default:
-				assert false;
-				return false;
-			}
-		}
-		return this.includes(interval.getMinimum())
-				|| this.includes(interval.getMaximum());
-	}
+	public abstract boolean intersectsWith(Interval interval);
 
 	@Override
 	public String toString() {
