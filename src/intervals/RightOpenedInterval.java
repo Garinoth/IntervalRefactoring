@@ -10,12 +10,12 @@ public class RightOpenedInterval extends Interval {
 	public Opening getOpening() {
 		return Opening.RIGHT_OPENED;
 	}
-	
+
 	@Override
 	public boolean includes(double value) {
 		return getMinimum() <= value && value < getMaximum();
 	}
-	
+
 	@Override
 	public boolean includes(Interval interval) {
 		boolean minimumIncluded = this.includes(interval.getMinimum());
@@ -23,13 +23,15 @@ public class RightOpenedInterval extends Interval {
 		switch (interval.getOpening()) {
 		case BOTH_OPENED:
 			return (minimumIncluded || getMinimum() == interval.getMinimum())
-					&& (maximumIncluded || getMaximum() == interval.getMaximum());
+					&& (maximumIncluded || getMaximum() == interval
+							.getMaximum());
 		case LEFT_OPENED:
 			return (minimumIncluded || getMinimum() == interval.getMinimum())
 					&& (maximumIncluded);
 		case RIGHT_OPENED:
 			return (minimumIncluded || getMinimum() == interval.getMinimum())
-					&& (maximumIncluded || getMaximum() == interval.getMaximum());
+					&& (maximumIncluded || getMaximum() == interval
+							.getMaximum());
 		case UNOPENED:
 			return (minimumIncluded || getMinimum() == interval.getMinimum())
 					&& (maximumIncluded);
