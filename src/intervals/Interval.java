@@ -31,7 +31,6 @@ public abstract class Interval {
 	public boolean intersectsWith(Interval interval) {
 		if (getMinimum() == interval.getMaximum()) {
 			switch (getOpening()) {
-			case RIGHT_OPENED:
 			case UNOPENED:
 				return interval.getOpening() == Opening.LEFT_OPENED ||
 						interval.getOpening() == Opening.UNOPENED;
@@ -42,8 +41,6 @@ public abstract class Interval {
 		}
 		if (getMaximum() == interval.getMinimum()) {
 			switch (getOpening()) {
-			case RIGHT_OPENED:
-				return false;
 			case UNOPENED:
 				return interval.getOpening() == Opening.RIGHT_OPENED ||
 						interval.getOpening() == Opening.UNOPENED;
