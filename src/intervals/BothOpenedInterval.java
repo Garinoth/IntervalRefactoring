@@ -39,4 +39,16 @@ public class BothOpenedInterval extends Interval {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean intersectsWith(Interval interval) {
+		if (getMinimum() == interval.getMaximum()) {
+			return false;
+		}
+		if (getMaximum() == interval.getMinimum()) {
+			return false;
+		}
+		return this.includes(interval.getMinimum())
+				|| this.includes(interval.getMaximum());
+	}
 }
