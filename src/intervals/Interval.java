@@ -26,15 +26,7 @@ public abstract class Interval {
 
 	public abstract boolean includes(double value);
 	
-	public boolean includes(Interval interval) {
-		boolean minimumIncluded = this.includes(interval.getMinimum());
-		boolean maximumIncluded = this.includes(interval.getMaximum());
-		switch (getOpening()) {
-		default:
-			assert false;
-			return false;
-		}
-	}
+	public abstract boolean includes(Interval interval);
 
 	public boolean intersectsWith(Interval interval) {
 		if (getMinimum() == interval.getMaximum()) {
