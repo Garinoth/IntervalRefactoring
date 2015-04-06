@@ -10,12 +10,12 @@ public class UnopenedInterval extends Interval {
 	public Opening getOpening() {
 		return Opening.UNOPENED;
 	}
-	
+
 	@Override
 	public boolean includes(double value) {
 		return getMinimum() <= value && value <= getMaximum();
 	}
-	
+
 	@Override
 	public boolean includes(Interval interval) {
 		boolean minimumIncluded = this.includes(interval.getMinimum());
@@ -41,5 +41,19 @@ public class UnopenedInterval extends Interval {
 			assert false;
 			return false;
 		}
+	}
+
+	@Override
+	public boolean intersectsWith(Interval interval) {
+		if (getMinimum() == interval.getMaximum()) {
+			return interval.getOpening() == Opening.LEFT_OPENED
+					|| interval.getOpening() == Opening.UNOPENED;
+		}
+		if (getMaximum() == interval.getMinimum()) {
+			return interval.getOpening() == Opening.RIGHT_OPENED
+					|| interval.getOpening() == Opening.UNOPENED;
+		}
+		return this.includes(interval.getMinimum())
+				|| this.includes(interval.getMaximum());
 	}
 }
