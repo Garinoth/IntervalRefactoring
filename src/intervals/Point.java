@@ -12,11 +12,14 @@ public abstract class Point {
 		return value;
 	}
 	
-	public abstract boolean greaterThan(Point point);
-	public abstract boolean greaterOrEqualsThan(Point point);
-	public abstract boolean lesserThan(Point point);
-	public abstract boolean lesserOrEqualsThan(Point point);
+	public boolean greaterThan(Point point) {
+		return this.getValue() > point.getValue();
+	}
 	
-	@Override
-	public abstract boolean equals(Object obj);
+	public boolean lesserThan(Point point) {
+		return this.getValue() < point.getValue();
+	}
+	
+	public abstract boolean greaterOrEqualsThan(Point point);
+	public abstract boolean lesserOrEqualsThan(Point point);
 }
