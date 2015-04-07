@@ -8,8 +8,7 @@ public class ClosedPoint extends Point {
 
 	@Override
 	public boolean greaterThan(Point point) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getValue() > point.getValue();
 	}
 
 	@Override
@@ -20,8 +19,7 @@ public class ClosedPoint extends Point {
 
 	@Override
 	public boolean lesserThan(Point point) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getValue() < point.getValue();
 	}
 
 	@Override
