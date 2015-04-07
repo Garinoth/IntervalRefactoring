@@ -18,22 +18,20 @@ public class BothOpenedInterval extends Interval {
 
 	@Override
 	public boolean includes(Interval interval) {
-		boolean minimumIncluded = this.includes(interval.getMinimum());
-		boolean maximumIncluded = this.includes(interval.getMaximum());
 		switch (interval.getOpening()) {
 		case BOTH_OPENED:
-			return (minimumIncluded || getMinimum() == interval.getMinimum())
-					&& (maximumIncluded || getMaximum() == interval
+			return (this.includes(interval.getMinimum()) || getMinimum() == interval.getMinimum())
+					&& (this.includes(interval.getMaximum()) || getMaximum() == interval
 							.getMaximum());
 		case LEFT_OPENED:
-			return (minimumIncluded || getMinimum() == interval.getMinimum())
-					&& (maximumIncluded);
+			return (this.includes(interval.getMinimum()) || getMinimum() == interval.getMinimum())
+					&& (this.includes(interval.getMaximum()));
 		case RIGHT_OPENED:
-			return (minimumIncluded)
-					&& (maximumIncluded || getMaximum() == interval
+			return (this.includes(interval.getMinimum()))
+					&& (this.includes(interval.getMaximum()) || getMaximum() == interval
 							.getMaximum());
 		case UNOPENED:
-			return (minimumIncluded) && (maximumIncluded);
+			return (this.includes(interval.getMinimum())) && (this.includes(interval.getMaximum()));
 		default:
 			assert false;
 			return false;
