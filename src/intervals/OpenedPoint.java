@@ -8,38 +8,32 @@ public class OpenedPoint extends Point {
 
 	@Override
 	public boolean greaterOrEqualsThan(Point point) {
-		// TODO Auto-generated method stub
-		return false;
+		return lesserOrEqualsThan(this);
 	}
 
 	@Override
 	public boolean greaterOrEqualsThan(OpenedPoint point) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getValue() >= point.getValue();
 	}
 
 	@Override
 	public boolean greaterOrEqualsThan(ClosedPoint point) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.greaterThan(point);
 	}
 	
 	@Override
 	public boolean lesserOrEqualsThan(Point point) {
-		// TODO Auto-generated method stub
-		return false;
+		return greaterOrEqualsThan(this);
 	}
 
 	@Override
 	public boolean lesserOrEqualsThan(OpenedPoint point) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getValue() <= point.getValue(); 
 	}
 
 	@Override
 	public boolean lesserOrEqualsThan(ClosedPoint point) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.lesserThan(point);
 	}
 
 }

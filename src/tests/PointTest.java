@@ -92,8 +92,8 @@ public class PointTest {
 		ClosedPoint closedPoint1 = new ClosedPoint(0);
 		ClosedPoint closedPoint2 = new ClosedPoint(5);
 		
-		assertTrue(openedPoint2.lesserOrEqualsThan(openedPoint1));
-		assertFalse(openedPoint2.lesserOrEqualsThan(openedPoint2));
+		assertFalse(openedPoint2.lesserOrEqualsThan(openedPoint1));
+		assertTrue(openedPoint2.lesserOrEqualsThan(openedPoint2));
 		assertFalse(openedPoint2.lesserOrEqualsThan(closedPoint1));
 		assertFalse(openedPoint2.lesserOrEqualsThan(closedPoint2));
 		
