@@ -18,27 +18,31 @@ public class LeftOpenedInterval extends Interval {
 
 	@Override
 	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-		case BOTH_OPENED:
-			return (this.includes(interval.getMinimum()) || getMinimum() == interval.getMinimum())
-					&& (this.includes(interval.getMaximum()) || getMaximum() == interval
-							.getMaximum());
-		case LEFT_OPENED:
-			return (this.includes(interval.getMinimum()) || getMinimum() == interval.getMinimum())
-					&& (this.includes(interval.getMaximum()) || getMaximum() == interval
-							.getMaximum());
-		case RIGHT_OPENED:
-			return (this.includes(interval.getMinimum()))
-					&& (this.includes(interval.getMaximum()) || getMaximum() == interval
-							.getMaximum());
-		case UNOPENED:
-			return (this.includes(interval.getMinimum()))
-					&& (this.includes(interval.getMaximum()) || getMaximum() == interval
-							.getMaximum());
-		default:
-			assert false;
-			return false;
-		}
+		return interval.isIncluded(this);
+	}
+
+	@Override
+	public boolean isIncluded(BothOpenedInterval interval) {
+		return (interval.includes(this.getMinimum()) || getMinimum() == interval.getMinimum())
+			&& (interval.includes(this.getMaximum()));
+	}
+
+	@Override
+	public boolean isIncluded(LeftOpenedInterval interval) {
+		return (interval.includes(this.getMinimum()) || getMinimum() == interval.getMinimum())
+			&& (interval.includes(this.getMaximum()) || getMaximum() == interval.getMaximum());
+	}
+
+	@Override
+	public boolean isIncluded(RightOpenedInterval interval) {
+		return (interval.includes(this.getMinimum()))
+			&& (interval.includes(this.getMaximum()));
+	}
+
+	@Override
+	public boolean isIncluded(UnopenedInterval interval) {
+		return (interval.includes(this.getMinimum()))
+			&& (interval.includes(this.getMaximum()) || getMaximum() == interval.getMaximum());
 	}
 
 	@Override
@@ -53,4 +57,5 @@ public class LeftOpenedInterval extends Interval {
 		return this.includes(interval.getMinimum())
 				|| this.includes(interval.getMaximum());
 	}
+
 }
