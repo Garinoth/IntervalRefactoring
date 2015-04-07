@@ -1,6 +1,6 @@
 package intervals;
 
-public class Point {
+public abstract class Point {
 
 	private Integer value;
 	
@@ -11,4 +11,12 @@ public class Point {
 	public Integer getValue() {
 		return value;
 	}
+	
+	public abstract boolean greaterThan(Point point);
+	public abstract boolean greaterOrEqualsThan(Point point);
+	public abstract boolean lesserThan(Point point);
+	public abstract boolean lesserOrEqualsThan(Point point);
+	
+	@Override
+	public abstract boolean equals(Object obj);
 }
