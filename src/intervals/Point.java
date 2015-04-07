@@ -2,13 +2,13 @@ package intervals;
 
 public abstract class Point {
 
-	private Integer value;
+	private double value;
 	
-	public Point(Integer value) {
+	public Point(double value) {
 		this.value = value;
 	}
 
-	public Integer getValue() {
+	public double getValue() {
 		return value;
 	}
 	

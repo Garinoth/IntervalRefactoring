@@ -2,7 +2,7 @@ package intervals;
 
 public class ClosedPoint extends Point {
 
-	public ClosedPoint(Integer value) {
+	public ClosedPoint(double value) {
 		super(value);
 	}
 
