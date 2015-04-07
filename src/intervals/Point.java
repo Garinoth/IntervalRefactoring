@@ -21,5 +21,10 @@ public abstract class Point {
 	}
 	
 	public abstract boolean greaterOrEqualsThan(Point point);
+	public abstract boolean greaterOrEqualsThan(OpenedPoint point);
+	public abstract boolean greaterOrEqualsThan(ClosedPoint point);
+
 	public abstract boolean lesserOrEqualsThan(Point point);
+	public abstract boolean lesserOrEqualsThan(OpenedPoint point);
+	public abstract boolean lesserOrEqualsThan(ClosedPoint point);
 }

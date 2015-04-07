@@ -13,7 +13,31 @@ public class OpenedPoint extends Point {
 	}
 
 	@Override
+	public boolean greaterOrEqualsThan(OpenedPoint point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean greaterOrEqualsThan(ClosedPoint point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
 	public boolean lesserOrEqualsThan(Point point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean lesserOrEqualsThan(OpenedPoint point) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean lesserOrEqualsThan(ClosedPoint point) {
 		// TODO Auto-generated method stub
 		return false;
 	}
