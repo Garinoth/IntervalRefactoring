@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({IntervalTest.class})
+@SuiteClasses({IntervalTest.class, PointTest.class})
 public class AllTest {
 
 }
