@@ -69,7 +69,7 @@ public class PointTest {
 		
 		assertTrue(openedPoint1.greaterOrEqualsThan(openedPoint1));
 		assertFalse(openedPoint1.greaterOrEqualsThan(openedPoint2));
-		assertFalse(openedPoint1.greaterOrEqualsThan(closedPoint1));
+		assertTrue(openedPoint1.greaterOrEqualsThan(closedPoint1));
 		assertFalse(openedPoint1.greaterOrEqualsThan(closedPoint2));
 		
 		assertTrue(openedPoint2.greaterOrEqualsThan(openedPoint1));
@@ -95,7 +95,7 @@ public class PointTest {
 		assertFalse(openedPoint2.lesserOrEqualsThan(openedPoint1));
 		assertTrue(openedPoint2.lesserOrEqualsThan(openedPoint2));
 		assertFalse(openedPoint2.lesserOrEqualsThan(closedPoint1));
-		assertFalse(openedPoint2.lesserOrEqualsThan(closedPoint2));
+		assertTrue(openedPoint2.lesserOrEqualsThan(closedPoint2));
 		
 		assertTrue(openedPoint1.lesserOrEqualsThan(openedPoint2));
 		assertTrue(openedPoint1.lesserOrEqualsThan(closedPoint2));

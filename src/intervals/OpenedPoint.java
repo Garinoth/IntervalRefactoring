@@ -8,7 +8,7 @@ public class OpenedPoint extends Point {
 
 	@Override
 	public boolean greaterOrEqualsThan(Point point) {
-		return lesserOrEqualsThan(this);
+		return point.lesserOrEqualsThan(this);
 	}
 
 	@Override
@@ -18,12 +18,12 @@ public class OpenedPoint extends Point {
 
 	@Override
 	public boolean greaterOrEqualsThan(ClosedPoint point) {
-		return this.greaterThan(point);
+		return this.getValue() >= point.getValue();
 	}
 	
 	@Override
 	public boolean lesserOrEqualsThan(Point point) {
-		return greaterOrEqualsThan(this);
+		return point.greaterOrEqualsThan(this);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class OpenedPoint extends Point {
 
 	@Override
 	public boolean lesserOrEqualsThan(ClosedPoint point) {
-		return this.lesserThan(point);
+		return this.getValue() <= point.getValue();
 	}
 
 }
