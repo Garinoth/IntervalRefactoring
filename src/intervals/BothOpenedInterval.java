@@ -24,26 +24,22 @@ public class BothOpenedInterval extends Interval {
 
 	@Override
 	public boolean isIncluded(BothOpenedInterval interval) {
-		return (interval.includes(getMinimum().getValue()) || getMinimum().getValue() == interval.getMinimum().getValue())
-			&& (interval.includes(getMaximum().getValue()) || getMaximum().getValue() == interval.getMaximum().getValue());
+		return interval.getMinimum().lesserOrEqualsThan(this.getMinimum()) && interval.getMaximum().greaterOrEqualsThan(this.getMaximum());
 	}
 
 	@Override
 	public boolean isIncluded(LeftOpenedInterval interval) {
-		return (interval.includes(getMinimum().getValue()) || getMinimum().getValue() == interval.getMinimum().getValue()) 
-			&& (interval.includes(getMaximum().getValue()));
+		return interval.getMinimum().lesserOrEqualsThan(this.getMinimum()) && interval.getMaximum().greaterOrEqualsThan(this.getMaximum());
 	}
 
 	@Override
 	public boolean isIncluded(RightOpenedInterval interval) {
-		return (interval.includes(getMinimum().getValue()))
-			&& (interval.includes(getMaximum().getValue()) || getMaximum().getValue() == interval.getMaximum().getValue());
+		return interval.getMinimum().lesserOrEqualsThan(this.getMinimum()) && interval.getMaximum().greaterOrEqualsThan(this.getMaximum());
 	}
 
 	@Override
 	public boolean isIncluded(UnopenedInterval interval) {
-		return (interval.includes(getMinimum().getValue()))
-			&& (interval.includes(getMaximum().getValue()));
+		return interval.getMinimum().lesserOrEqualsThan(this.getMinimum()) && interval.getMaximum().greaterOrEqualsThan(this.getMaximum());
 	}
 
 	@Override
