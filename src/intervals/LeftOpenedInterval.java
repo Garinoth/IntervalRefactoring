@@ -16,12 +16,7 @@ public class LeftOpenedInterval extends Interval {
 		ClosedPoint valuePoint = new ClosedPoint(value);
 		return getMinimum().lesserThan(valuePoint) && getMaximum().greaterOrEqualsThan(valuePoint);
 	}
-
-	@Override
-	public boolean includes(Interval interval) {
-		return this.getMinimum().lesserOrEqualsThan(interval.getMinimum()) && this.getMaximum().greaterOrEqualsThan(interval.getMaximum());
-	}
-
+	
 	@Override
 	public boolean intersectsWith(Interval interval) {
 		if (getMinimum().getValue() == interval.getMaximum().getValue()) {

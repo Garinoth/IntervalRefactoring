@@ -18,11 +18,6 @@ public class BothOpenedInterval extends Interval {
 	}
 
 	@Override
-	public boolean includes(Interval interval) {
-		return this.getMinimum().lesserOrEqualsThan(interval.getMinimum()) && this.getMaximum().greaterOrEqualsThan(interval.getMaximum());
-	}
-
-	@Override
 	public boolean intersectsWith(Interval interval) {
 		return this.includes(interval.getMinimum().getValue())
 				|| this.includes(interval.getMaximum().getValue());
